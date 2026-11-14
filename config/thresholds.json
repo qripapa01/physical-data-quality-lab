@@ -1,0 +1,18 @@
+{
+  "_comment": "품질 판정 기준값(예시). 실제 기준은 센서 종류와 용도에 맞춰 전문가가 정해야 한다.",
+  "expected_sample_rate": null,
+  "expected_channels": 1,
+  "silence_dbfs": -70.0,
+  "duration_dev_warn": 0.05,
+  "duration_dev_fail": 0.20,
+  "clip_ratio_warn": 0.001,
+  "clip_ratio_fail": 0.01,
+  "dc_offset_warn": 0.01,
+  "dc_offset_fail": 0.05,
+  "flat_ms_warn": 20.0,
+  "flat_ms_fail": 100.0,
+  "silence_ratio_warn": 0.5,
+  "silence_ratio_fail": 0.9,
+  "outlier_z_warn": 5.0,
+  "outlier_min_group": 8
+}

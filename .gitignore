@@ -1,0 +1,9 @@
+# 데이터와 큰 생성물은 올리지 않는다
+data/
+results*/injected/
+results*/quality_graph.ttl
+results*/read_errors.csv
+__pycache__/
+*.pyc
+.env
+.venv/

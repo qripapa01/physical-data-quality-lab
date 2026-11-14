@@ -1,0 +1,111 @@
+{
+ "Q1_verdict_by_machine": [
+  {
+   "machine": "fan",
+   "domain": "source",
+   "files": 60,
+   "fail": 2,
+   "warn": 0
+  },
+  {
+   "machine": "fan",
+   "domain": "target",
+   "files": 24,
+   "fail": 0,
+   "warn": 0
+  },
+  {
+   "machine": "pump",
+   "domain": "source",
+   "files": 60,
+   "fail": 1,
+   "warn": 0
+  },
+  {
+   "machine": "pump",
+   "domain": "target",
+   "files": 24,
+   "fail": 0,
+   "warn": 0
+  },
+  {
+   "machine": "valve",
+   "domain": "source",
+   "files": 60,
+   "fail": 0,
+   "warn": 4
+  },
+  {
+   "machine": "valve",
+   "domain": "target",
+   "files": 24,
+   "fail": 1,
+   "warn": 0
+  }
+ ],
+ "Q2_issues_by_dimension": [
+  {
+   "dimension": "정확성",
+   "rule": "같은 기기·도메인 대비 통계적 이상치",
+   "issues": 9
+  },
+  {
+   "dimension": "정확성",
+   "rule": "클리핑",
+   "issues": 1
+  },
+  {
+   "dimension": "정확성",
+   "rule": "DC 오프셋",
+   "issues": 1
+  },
+  {
+   "dimension": "유일성",
+   "rule": "내용이 같은 중복 파일",
+   "issues": 1
+  },
+  {
+   "dimension": "완전성",
+   "rule": "끊김/정지 구간",
+   "issues": 1
+  },
+  {
+   "dimension": "일관성",
+   "rule": "샘플링레이트 불일치",
+   "issues": 1
+  }
+ ],
+ "Q3_clipping_over_threshold": [
+  {
+   "file": "data\\demo\\fan\\train\\section_00_source_train_normal_0003_demo.wav",
+   "machine": "fan",
+   "clip_ratio": 0.6157083
+  }
+ ],
+ "Q4_fail_trace": [
+  {
+   "file": "data\\demo\\fan\\test\\section_00_source_test_normal_0007_demo.wav",
+   "machine": "fan",
+   "rule": "샘플링레이트 불일치",
+   "message": "8000 Hz != 16000 Hz"
+  },
+  {
+   "file": "data\\demo\\fan\\train\\section_00_source_train_normal_0003_demo.wav",
+   "machine": "fan",
+   "rule": "클리핑",
+   "message": "0.6157 > 0.01"
+  },
+  {
+   "file": "data\\demo\\pump\\train\\section_00_source_train_normal_0005_demo.wav",
+   "machine": "pump",
+   "rule": "끊김/정지 구간",
+   "message": "300ms > 100.0ms"
+  },
+  {
+   "file": "data\\demo\\valve\\test\\section_00_target_test_normal_0002_demo.wav",
+   "machine": "valve",
+   "rule": "내용이 같은 중복 파일",
+   "message": "section_00_target_test_normal_0001_demo.wav 와 내용 동일"
+  }
+ ]
+}

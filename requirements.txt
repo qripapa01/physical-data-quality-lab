@@ -1,0 +1,8 @@
+numpy
+scipy
+pandas
+soundfile
+matplotlib
+rdflib>=7
+tabulate
+anthropic

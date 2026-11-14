@@ -1,0 +1,176 @@
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pdq: <https://github.com/qripapa01/physical-data-quality-lab/ontology#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+pdq:Machine a owl:Class ;
+    rdfs:label "기계(관측 대상)"@ko ;
+    rdfs:subClassOf sosa:FeatureOfInterest .
+
+pdq:Microphone a owl:Class ;
+    rdfs:label "마이크(센서)"@ko ;
+    rdfs:subClassOf sosa:Sensor .
+
+pdq:R01_NAN a pdq:QualityRule ;
+    rdfs:label "숫자가 아닌 값(NaN/Inf)"@ko ;
+    pdq:checksMetric pdq:nan_count .
+
+pdq:R02_SAMPLE_RATE a pdq:QualityRule ;
+    rdfs:label "샘플링레이트 불일치"@ko ;
+    pdq:checksMetric pdq:sample_rate .
+
+pdq:R03_CHANNELS a pdq:QualityRule ;
+    rdfs:label "채널 수 불일치"@ko ;
+    pdq:checksMetric pdq:channels .
+
+pdq:R04_DURATION a pdq:QualityRule ;
+    rdfs:label "길이 이상(잘림/초과)"@ko ;
+    pdq:checksMetric pdq:duration_s .
+
+pdq:R05_CLIPPING a pdq:QualityRule ;
+    rdfs:label "클리핑"@ko ;
+    pdq:checksMetric pdq:clip_ratio .
+
+pdq:R06_DC_OFFSET a pdq:QualityRule ;
+    rdfs:label "DC 오프셋"@ko ;
+    pdq:checksMetric pdq:dc_offset .
+
+pdq:R07_DROPOUT a pdq:QualityRule ;
+    rdfs:label "끊김/정지 구간"@ko ;
+    pdq:checksMetric pdq:longest_flat_ms .
+
+pdq:R08_SILENCE a pdq:QualityRule ;
+    rdfs:label "무음 과다"@ko ;
+    pdq:checksMetric pdq:silence_ratio .
+
+pdq:R09_METADATA a pdq:QualityRule ;
+    rdfs:label "파일명 메타데이터 누락"@ko ;
+    pdq:checksMetric pdq:meta_ok .
+
+pdq:R10_DUPLICATE a pdq:QualityRule ;
+    rdfs:label "내용이 같은 중복 파일"@ko ;
+    pdq:checksMetric pdq:md5 .
+
+pdq:R11_OUTLIER a pdq:QualityRule ;
+    rdfs:label "같은 기기·도메인 대비 통계적 이상치"@ko ;
+    pdq:checksMetric pdq:robust_z .
+
+pdq:checksMetric a owl:ObjectProperty ;
+    rdfs:label "보는 지표"@ko ;
+    rdfs:domain pdq:QualityRule ;
+    rdfs:range dqv:Metric .
+
+pdq:domain a owl:DatatypeProperty ;
+    rdfs:label "도메인(source/target)"@ko .
+
+pdq:filePath a owl:DatatypeProperty ;
+    rdfs:label "파일 경로"@ko .
+
+pdq:hasIssue a owl:ObjectProperty ;
+    rdfs:label "이슈를 가짐"@ko ;
+    rdfs:domain pdq:AudioRecording ;
+    rdfs:range pdq:QualityIssue .
+
+pdq:label a owl:DatatypeProperty ;
+    rdfs:label "정상/이상 라벨"@ko .
+
+pdq:message a owl:DatatypeProperty ;
+    rdfs:label "설명"@ko .
+
+pdq:rms_dbfs a dqv:Metric ;
+    rdfs:label "RMS 레벨(dBFS)"@ko ;
+    dqv:inDimension pdq:Accuracy .
+
+pdq:severity a owl:DatatypeProperty ;
+    rdfs:label "심각도"@ko .
+
+pdq:snr_est_db a dqv:Metric ;
+    rdfs:label "추정 SNR(dB)"@ko ;
+    dqv:inDimension pdq:Accuracy .
+
+pdq:spectral_flatness a dqv:Metric ;
+    rdfs:label "스펙트럼 평탄도"@ko ;
+    dqv:inDimension pdq:Accuracy .
+
+pdq:split a owl:DatatypeProperty ;
+    rdfs:label "분할(train/test)"@ko .
+
+pdq:verdict a owl:DatatypeProperty ;
+    rdfs:label "품질 판정"@ko .
+
+pdq:violatesRule a owl:ObjectProperty ;
+    rdfs:label "위반한 규칙"@ko ;
+    rdfs:domain pdq:QualityIssue ;
+    rdfs:range pdq:QualityRule .
+
+pdq:AudioRecording a owl:Class ;
+    rdfs:label "녹음 파일(관측)"@ko ;
+    rdfs:subClassOf sosa:Observation .
+
+pdq:Uniqueness a dqv:Dimension ;
+    rdfs:label "Uniqueness"@en,
+        "유일성"@ko .
+
+pdq:channels a dqv:Metric ;
+    rdfs:label "채널 수"@ko ;
+    dqv:inDimension pdq:Consistency .
+
+pdq:clip_ratio a dqv:Metric ;
+    rdfs:label "클리핑 비율"@ko ;
+    dqv:inDimension pdq:Accuracy .
+
+pdq:dc_offset a dqv:Metric ;
+    rdfs:label "DC 오프셋"@ko ;
+    dqv:inDimension pdq:Accuracy .
+
+pdq:duration_s a dqv:Metric ;
+    rdfs:label "길이(초)"@ko ;
+    dqv:inDimension pdq:Completeness .
+
+pdq:longest_flat_ms a dqv:Metric ;
+    rdfs:label "최장 정지 구간(ms)"@ko ;
+    dqv:inDimension pdq:Completeness .
+
+pdq:md5 a dqv:Metric ;
+    rdfs:label "파일 해시"@ko ;
+    dqv:inDimension pdq:Uniqueness .
+
+pdq:meta_ok a dqv:Metric ;
+    rdfs:label "메타데이터 완전 여부"@ko ;
+    dqv:inDimension pdq:Completeness .
+
+pdq:nan_count a dqv:Metric ;
+    rdfs:label "NaN/Inf 개수"@ko ;
+    dqv:inDimension pdq:Accuracy .
+
+pdq:robust_z a dqv:Metric ;
+    rdfs:label "묶음 대비 robust z"@ko ;
+    dqv:inDimension pdq:Accuracy .
+
+pdq:sample_rate a dqv:Metric ;
+    rdfs:label "샘플링레이트(Hz)"@ko ;
+    dqv:inDimension pdq:Consistency .
+
+pdq:silence_ratio a dqv:Metric ;
+    rdfs:label "무음 비율"@ko ;
+    dqv:inDimension pdq:Completeness .
+
+pdq:Consistency a dqv:Dimension ;
+    rdfs:label "Consistency"@en,
+        "일관성"@ko .
+
+pdq:QualityIssue a owl:Class ;
+    rdfs:label "품질 이슈(규칙 위반 기록)"@ko .
+
+pdq:Completeness a dqv:Dimension ;
+    rdfs:label "Completeness"@en,
+        "완전성"@ko .
+
+pdq:Accuracy a dqv:Dimension ;
+    rdfs:label "Accuracy"@en,
+        "정확성"@ko .
+
+pdq:QualityRule a owl:Class ;
+    rdfs:label "품질 판정 규칙"@ko .
+

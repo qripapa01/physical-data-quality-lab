@@ -1,0 +1,21 @@
+defect,level,description,expected_rule,sum,count,any_sum,detection_rate,any_rule_rate
+clipping,1.05,클리핑: 피크 배율,R05_CLIPPING,0,10,7,0.0,0.7
+clipping,1.5,클리핑: 피크 배율,R05_CLIPPING,10,10,10,1.0,1.0
+clipping,3.0,클리핑: 피크 배율,R05_CLIPPING,10,10,10,1.0,1.0
+dropout,10.0,끊김 길이(ms),R07_DROPOUT,0,10,0,0.0,0.0
+dropout,50.0,끊김 길이(ms),R07_DROPOUT,10,10,10,1.0,1.0
+dropout,200.0,끊김 길이(ms),R07_DROPOUT,10,10,10,1.0,1.0
+dc_offset,0.005,DC 오프셋,R06_DC_OFFSET,0,10,2,0.0,0.2
+dc_offset,0.02,DC 오프셋,R06_DC_OFFSET,10,10,10,1.0,1.0
+dc_offset,0.08,DC 오프셋,R06_DC_OFFSET,10,10,10,1.0,1.0
+white_noise,20.0,백색잡음 SNR(dB),R11_OUTLIER,3,10,3,0.3,0.3
+white_noise,10.0,백색잡음 SNR(dB),R11_OUTLIER,10,10,10,1.0,1.0
+white_noise,0.0,백색잡음 SNR(dB),R11_OUTLIER,10,10,10,1.0,1.0
+silence,-20.0,레벨 감쇠(dB),R08_SILENCE,0,10,10,0.0,1.0
+silence,-40.0,레벨 감쇠(dB),R08_SILENCE,3,10,10,0.3,1.0
+silence,-80.0,레벨 감쇠(dB),R08_SILENCE,10,10,10,1.0,1.0
+truncate,0.97,남은 길이 비율,R04_DURATION,0,10,0,0.0,0.0
+truncate,0.9,남은 길이 비율,R04_DURATION,10,10,10,1.0,1.0
+truncate,0.5,남은 길이 비율,R04_DURATION,10,10,10,1.0,1.0
+wrong_rate,1.0,샘플링레이트 절반,R02_SAMPLE_RATE,10,10,10,1.0,1.0
+duplicate,1.0,중복 파일,R10_DUPLICATE,10,10,10,1.0,1.0

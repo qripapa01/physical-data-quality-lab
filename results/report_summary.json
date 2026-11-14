@@ -1,0 +1,200 @@
+{
+ "outlier_warnings": {
+  "total": 9,
+  "on_anomaly_labeled_files": 4
+ },
+ "dataset": {
+  "total_files": 252,
+  "machines": [
+   "fan",
+   "pump",
+   "valve"
+  ],
+  "sample_rates_hz": [
+   8000,
+   16000
+  ],
+  "verdict_counts": {
+   "PASS": 244,
+   "FAIL": 4,
+   "WARN": 4
+  }
+ },
+ "thresholds": {
+  "expected_sample_rate": null,
+  "expected_channels": 1,
+  "silence_dbfs": -70.0,
+  "duration_dev_warn": 0.05,
+  "duration_dev_fail": 0.2,
+  "clip_ratio_warn": 0.001,
+  "clip_ratio_fail": 0.01,
+  "dc_offset_warn": 0.01,
+  "dc_offset_fail": 0.05,
+  "flat_ms_warn": 20.0,
+  "flat_ms_fail": 100.0,
+  "silence_ratio_warn": 0.5,
+  "silence_ratio_fail": 0.9,
+  "outlier_z_warn": 5.0,
+  "outlier_min_group": 8
+ },
+ "issues_by_rule": [
+  {
+   "rule_id": "R02_SAMPLE_RATE",
+   "rule_name": "샘플링레이트 불일치",
+   "severity": "FAIL",
+   "count": 1
+  },
+  {
+   "rule_id": "R05_CLIPPING",
+   "rule_name": "클리핑",
+   "severity": "FAIL",
+   "count": 1
+  },
+  {
+   "rule_id": "R06_DC_OFFSET",
+   "rule_name": "DC 오프셋",
+   "severity": "WARN",
+   "count": 1
+  },
+  {
+   "rule_id": "R07_DROPOUT",
+   "rule_name": "끊김/정지 구간",
+   "severity": "FAIL",
+   "count": 1
+  },
+  {
+   "rule_id": "R10_DUPLICATE",
+   "rule_name": "내용이 같은 중복 파일",
+   "severity": "FAIL",
+   "count": 1
+  },
+  {
+   "rule_id": "R11_OUTLIER",
+   "rule_name": "같은 기기·도메인 대비 통계적 이상치",
+   "severity": "WARN",
+   "count": 9
+  }
+ ],
+ "issue_examples": [
+  {
+   "file": "section_00_source_test_normal_0007_demo.wav",
+   "machine": "fan",
+   "rule": "샘플링레이트 불일치",
+   "severity": "FAIL",
+   "message": "8000 Hz != 16000 Hz"
+  },
+  {
+   "file": "section_00_source_train_normal_0003_demo.wav",
+   "machine": "fan",
+   "rule": "클리핑",
+   "severity": "FAIL",
+   "message": "0.6157 > 0.01"
+  },
+  {
+   "file": "section_00_source_train_normal_0005_demo.wav",
+   "machine": "pump",
+   "rule": "끊김/정지 구간",
+   "severity": "FAIL",
+   "message": "300ms > 100.0ms"
+  },
+  {
+   "file": "section_00_target_test_normal_0002_demo.wav",
+   "machine": "valve",
+   "rule": "내용이 같은 중복 파일",
+   "severity": "FAIL",
+   "message": "section_00_target_test_normal_0001_demo.wav 와 내용 동일"
+  },
+  {
+   "file": "section_00_source_train_normal_0003_demo.wav",
+   "machine": "fan",
+   "rule": "DC 오프셋",
+   "severity": "WARN",
+   "message": "0.02214 > 0.01"
+  },
+  {
+   "file": "section_00_source_train_normal_0003_demo.wav",
+   "machine": "fan",
+   "rule": "같은 기기·도메인 대비 통계적 이상치",
+   "severity": "WARN",
+   "message": "rms_dbfs robust z = 14.7"
+  }
+ ],
+ "ontology_query_results": {
+  "verdict_by_machine": [
+   {
+    "machine": "fan",
+    "domain": "source",
+    "files": 60,
+    "fail": 2,
+    "warn": 0
+   },
+   {
+    "machine": "fan",
+    "domain": "target",
+    "files": 24,
+    "fail": 0,
+    "warn": 0
+   },
+   {
+    "machine": "pump",
+    "domain": "source",
+    "files": 60,
+    "fail": 1,
+    "warn": 0
+   },
+   {
+    "machine": "pump",
+    "domain": "target",
+    "files": 24,
+    "fail": 0,
+    "warn": 0
+   },
+   {
+    "machine": "valve",
+    "domain": "source",
+    "files": 60,
+    "fail": 0,
+    "warn": 4
+   },
+   {
+    "machine": "valve",
+    "domain": "target",
+    "files": 24,
+    "fail": 1,
+    "warn": 0
+   }
+  ],
+  "issues_by_dimension": [
+   {
+    "dimension": "정확성",
+    "rule": "같은 기기·도메인 대비 통계적 이상치",
+    "issues": 9
+   },
+   {
+    "dimension": "정확성",
+    "rule": "클리핑",
+    "issues": 1
+   },
+   {
+    "dimension": "정확성",
+    "rule": "DC 오프셋",
+    "issues": 1
+   },
+   {
+    "dimension": "유일성",
+    "rule": "내용이 같은 중복 파일",
+    "issues": 1
+   },
+   {
+    "dimension": "완전성",
+    "rule": "끊김/정지 구간",
+    "issues": 1
+   },
+   {
+    "dimension": "일관성",
+    "rule": "샘플링레이트 불일치",
+    "issues": 1
+   }
+  ]
+ }
+}
