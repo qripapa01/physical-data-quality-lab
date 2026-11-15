@@ -1,0 +1,118 @@
+{
+ "_comment": "사람이 직접 만든 정답표. location은 표현이 다양해 채점하지 않음.",
+ "demo_link": {
+  "D01": "fan",
+  "D02": "pump",
+  "D03": "valve"
+ },
+ "answers": {
+  "D01": {
+   "machine_type": "fan",
+   "sensor_type": "microphone",
+   "sample_rate_hz": 16000,
+   "channels": 1,
+   "duration_s": 3,
+   "file_count": 84,
+   "location": "창원 1공장 조립라인"
+  },
+  "D02": {
+   "machine_type": "pump",
+   "sensor_type": "microphone",
+   "sample_rate_hz": 16000,
+   "channels": 1,
+   "duration_s": 3,
+   "file_count": 84,
+   "location": "Line B, Ulsan plant"
+  },
+  "D03": {
+   "machine_type": "valve",
+   "sensor_type": "microphone",
+   "sample_rate_hz": 16000,
+   "channels": 1,
+   "duration_s": 3,
+   "file_count": 84,
+   "location": "진주 시험동"
+  },
+  "D04": {
+   "machine_type": "motor",
+   "sensor_type": "accelerometer",
+   "sample_rate_hz": 25600,
+   "channels": 3,
+   "duration_s": 10,
+   "file_count": 120,
+   "location": "평택 2라인"
+  },
+  "D05": {
+   "machine_type": "bearing",
+   "sensor_type": "accelerometer",
+   "sample_rate_hz": 12000,
+   "channels": 1,
+   "duration_s": 20,
+   "file_count": 400,
+   "location": null
+  },
+  "D06": {
+   "machine_type": "compressor",
+   "sensor_type": "current",
+   "sample_rate_hz": 10000,
+   "channels": 1,
+   "duration_s": 60,
+   "file_count": null,
+   "location": null
+  },
+  "D07": {
+   "machine_type": "gearbox",
+   "sensor_type": "microphone",
+   "sample_rate_hz": 48000,
+   "channels": 2,
+   "duration_s": 5,
+   "file_count": 200,
+   "location": "구미 공장"
+  },
+  "D08": {
+   "machine_type": "conveyor",
+   "sensor_type": "temperature",
+   "sample_rate_hz": 1,
+   "channels": 1,
+   "duration_s": 86400,
+   "file_count": 30,
+   "location": null
+  },
+  "D09": {
+   "machine_type": "fan",
+   "sensor_type": "microphone",
+   "sample_rate_hz": 44100,
+   "channels": 1,
+   "duration_s": 10,
+   "file_count": 1000,
+   "location": "Suwon test lab"
+  },
+  "D10": {
+   "machine_type": "pump",
+   "sensor_type": "accelerometer",
+   "sample_rate_hz": 51200,
+   "channels": 2,
+   "duration_s": null,
+   "file_count": 50,
+   "location": null
+  },
+  "D11": {
+   "machine_type": "valve",
+   "sensor_type": "microphone",
+   "sample_rate_hz": 22050,
+   "channels": 1,
+   "duration_s": 2.5,
+   "file_count": 300,
+   "location": null
+  },
+  "D12": {
+   "machine_type": "other",
+   "sensor_type": "current",
+   "sample_rate_hz": 1000,
+   "channels": 6,
+   "duration_s": 30,
+   "file_count": 60,
+   "location": null
+  }
+ }
+}

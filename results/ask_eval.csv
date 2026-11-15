@@ -1,0 +1,11 @@
+﻿id,question,correct,error,llm_rows,gold_rows
+Q01,전체 녹음 파일은 몇 개인가?,True,,[[252]],[[252]]
+Q02,FAIL 판정을 받은 녹음 파일은 몇 개인가?,True,,[[4]],[[4]]
+Q03,기계별로 FAIL 판정 파일이 몇 개씩 있는가? (FAIL이 있는 기계만),True,,"[[""fan"", 2], [""valve"", 1], [""pump"", 1]]","[[""fan"", 2], [""valve"", 1], [""pump"", 1]]"
+Q04,클리핑 비율이 가장 높은 녹음 파일 1개의 경로와 그 클리핑 비율은?,True,,"[[""data\\demo\\fan\\train\\section_00_source_train_normal_0003_demo.wav"", 0.6157083]]","[[""data\\demo\\fan\\train\\section_00_source_train_normal_0003_demo.wav"", 0.6157083]]"
+Q05,정확성 품질 차원에 속하는 문제 기록은 모두 몇 건인가?,True,,[[11]],[[11]]
+Q06,가장 많이 위반된 품질 규칙의 이름과 위반 건수는?,True,,"[[""같은 기기·도메인 대비 통계적 이상치"", 9]]","[[""같은 기기·도메인 대비 통계적 이상치"", 9]]"
+Q07,이상(anomaly) 라벨이 붙은 녹음 파일 중 품질 문제 기록이 하나라도 있는 파일은 몇 개인가?,True,,[[4]],[[4]]
+Q08,샘플링레이트가 16000Hz가 아닌 녹음 파일의 경로는?,True,,"[[""data\\demo\\fan\\test\\section_00_source_test_normal_0007_demo.wav""]]","[[""data\\demo\\fan\\test\\section_00_source_test_normal_0007_demo.wav""]]"
+Q09,pump 기계의 녹음 파일 중 판정이 PASS가 아닌 파일의 경로와 판정은?,True,,"[[""data\\demo\\pump\\train\\section_00_source_train_normal_0005_demo.wav"", ""FAIL""]]","[[""data\\demo\\pump\\train\\section_00_source_train_normal_0005_demo.wav"", ""FAIL""]]"
+Q10,train 폴더의 normal 0003번 fan 파일은 어떤 규칙을 위반했는가? 규칙 이름과 심각도를 알려줘.,True,,"[[""클리핑"", ""FAIL""], [""DC 오프셋"", ""WARN""], [""같은 기기·도메인 대비 통계적 이상치"", ""WARN""], [""같은 기기·도메인 대비 통계적 이상치"", ""WARN""], [""같은 기기·도메인 대비 통계적 이상치"", ""WARN""]]","[[""클리핑"", ""FAIL""], [""DC 오프셋"", ""WARN""], [""같은 기기·도메인 대비 통계적 이상치"", ""WARN""], [""같은 기기·도메인 대비 통계적 이상치"", ""WARN""], [""같은 기기·도메인 대비 통계적 이상치"", ""WARN""]]"

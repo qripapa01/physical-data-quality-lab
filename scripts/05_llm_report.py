@@ -1,10 +1,10 @@
 """5단계: LLM이 품질 점검 보고서 초안을 쓰고, 코드가 숫자를 대조한다.
 
-LLM 선택 (환경변수):
-  ANTHROPIC_API_KEY 가 있으면 Claude, OPENAI_API_KEY 가 있으면 OpenAI, 둘 다 없으면 템플릿 보고서.
-  PDQ_LLM_PROVIDER=anthropic|openai|template 로 강제 지정, PDQ_LLM_MODEL 로 모델 이름 지정.
+LLM 선택: --provider anthropic|openai|ollama|manual|template|auto (기본 auto)
+  auto 는 API 키 -> 내 PC의 Ollama 순서로 찾고, 없으면 템플릿 보고서.
 
 사용:  python scripts/05_llm_report.py --results results
+       python scripts/05_llm_report.py --provider manual   (Claude 채팅 붙여넣기)
 결과:  results/quality_report.md, results/report_summary.json
 """
 import argparse
@@ -15,14 +15,20 @@ from pathlib import Path
 import pandas as pd
 from _common import ROOT  # noqa: F401
 
+from pdq.llm_client import ManualPending, pick_provider
 from pdq.llm_report import build_summary, write_report
 from pdq.rules import load_thresholds
+
+
+def a_provider(args):
+    return "template" if args.provider == "template" else args.provider
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default="results")
     ap.add_argument("--config", default=None)
+    ap.add_argument("--provider", default=None)
     args = ap.parse_args()
     res = Path(args.results)
 
@@ -34,7 +40,11 @@ def main():
     (res / "report_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1),
                                             encoding="utf-8")
 
-    body, provider, unknown = write_report(summary)
+    try:
+        body, provider, unknown = write_report(summary, pick_provider(a_provider(args)))
+    except ManualPending as e:
+        print(e)
+        return
     check = ("- 보고서의 모든 숫자가 요약 데이터와 일치함" if not unknown else
              "- 요약 데이터에 없는 숫자 (사람이 확인 필요): " + ", ".join(unknown))
     report = "\n".join([

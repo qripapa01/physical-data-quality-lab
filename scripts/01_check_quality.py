@@ -8,14 +8,12 @@ import argparse
 import time
 from pathlib import Path
 
-from _common import INK, INK2, STATUS_COLORS, SURFACE, metrics_table, setup_korean_font
+from _common import INK, INK2, STATUS_COLORS, SURFACE, metrics_table
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-
-setup_korean_font()
 
 from pdq.io_utils import find_wavs  # noqa: E402
 from pdq.rules import evaluate, load_thresholds  # noqa: E402
@@ -34,11 +32,11 @@ def plot_verdicts(df, path):
         left = left + share[v]
     for i, m in enumerate(tab.index):
         bad = tab.loc[m, "WARN"] + tab.loc[m, "FAIL"]
-        ax.text(101, i, f"{tab.loc[m].sum()}개 중 {bad}개 WARN·FAIL", va="center", fontsize=9, color=INK2)
+        ax.text(101, i, f"{bad} of {tab.loc[m].sum()} flagged", va="center", fontsize=9, color=INK2)
     ax.set_xlim(0, 125)
     ax.set_xticks([0, 20, 40, 60, 80, 100])
-    ax.set_xlabel("파일 비율 (%)", color=INK2)
-    ax.set_title("기기별 품질 판정 결과", loc="left", color=INK, fontsize=12)
+    ax.set_xlabel("share of files (%)", color=INK2)
+    ax.set_title("Quality verdict by machine type", loc="left", color=INK, fontsize=12)
     ax.legend(ncol=3, loc="upper left", bbox_to_anchor=(0, -0.25), frameon=False)
     for s in ["top", "right"]:
         ax.spines[s].set_visible(False)

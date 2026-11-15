@@ -4,10 +4,6 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 
-pdq:Machine a owl:Class ;
-    rdfs:label "기계(관측 대상)"@ko ;
-    rdfs:subClassOf sosa:FeatureOfInterest .
-
 pdq:Microphone a owl:Class ;
     rdfs:label "마이크(센서)"@ko ;
     rdfs:subClassOf sosa:Sensor .
@@ -78,6 +74,11 @@ pdq:label a owl:DatatypeProperty ;
 pdq:message a owl:DatatypeProperty ;
     rdfs:label "설명"@ko .
 
+pdq:monitors a owl:ObjectProperty ;
+    rdfs:label "감시하는 기계"@ko ;
+    rdfs:domain sosa:Sensor ;
+    rdfs:range pdq:Machine .
+
 pdq:rms_dbfs a dqv:Metric ;
     rdfs:label "RMS 레벨(dBFS)"@ko ;
     dqv:inDimension pdq:Accuracy .
@@ -88,6 +89,9 @@ pdq:severity a owl:DatatypeProperty ;
 pdq:snr_est_db a dqv:Metric ;
     rdfs:label "추정 SNR(dB)"@ko ;
     dqv:inDimension pdq:Accuracy .
+
+pdq:sound a sosa:ObservableProperty ;
+    rdfs:label "소리"@ko .
 
 pdq:spectral_flatness a dqv:Metric ;
     rdfs:label "스펙트럼 평탄도"@ko ;
@@ -107,6 +111,10 @@ pdq:violatesRule a owl:ObjectProperty ;
 pdq:AudioRecording a owl:Class ;
     rdfs:label "녹음 파일(관측)"@ko ;
     rdfs:subClassOf sosa:Observation .
+
+pdq:Machine a owl:Class ;
+    rdfs:label "기계(관측 대상)"@ko ;
+    rdfs:subClassOf sosa:FeatureOfInterest .
 
 pdq:Uniqueness a dqv:Dimension ;
     rdfs:label "Uniqueness"@en,

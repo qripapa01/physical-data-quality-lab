@@ -5,6 +5,9 @@
 - DQV  (W3C): 품질 측정(QualityMeasurement), 지표(Metric), 품질 차원(Dimension)
 그 위에 이 실습용 어휘(pdq:)를 조금 더한다: 기계, 마이크, 녹음, 품질 규칙, 품질 이슈.
 
+v0.2 수정: 처음에는 '센서 sosa:observes 기계'로 썼으나, SOSA 표준에서 observes 는
+'관측 속성(소리·진동 등)'을 가리켜야 하므로 '센서 sosa:observes pdq:sound' + '센서 pdq:monitors 기계'로 고쳤다.
+
 트리플 예:
     obs:fan_0001  sosa:hasFeatureOfInterest  machine:fan
     obs:fan_0001  sosa:madeBySensor          sensor:fan_mic
@@ -76,6 +79,7 @@ def build_schema() -> Graph:
         PDQ.hasIssue: (PDQ.AudioRecording, PDQ.QualityIssue, "이슈를 가짐"),
         PDQ.violatesRule: (PDQ.QualityIssue, PDQ.QualityRule, "위반한 규칙"),
         PDQ.checksMetric: (PDQ.QualityRule, DQV.Metric, "보는 지표"),
+        PDQ.monitors: (SOSA.Sensor, PDQ.Machine, "감시하는 기계"),
     }
     for p, (dom, rng, label) in obj_props.items():
         g.add((p, RDF.type, OWL.ObjectProperty))
@@ -88,6 +92,10 @@ def build_schema() -> Graph:
                      (PDQ.message, "설명")]:
         g.add((p, RDF.type, OWL.DatatypeProperty))
         g.add((p, RDFS.label, Literal(label, lang="ko")))
+
+    # 관측 속성(SOSA ObservableProperty): 센서가 재는 '것'. 여기서는 소리
+    g.add((PDQ.sound, RDF.type, SOSA.ObservableProperty))
+    g.add((PDQ.sound, RDFS.label, Literal("소리", lang="ko")))
 
     for dim, ko in DIMENSION_KO.items():
         d = PDQ[dim]
@@ -123,7 +131,8 @@ def build_data_graph(metrics_df: pd.DataFrame, issues_df: pd.DataFrame) -> Graph
         g.add((m, RDFS.label, Literal(machine)))
         g.add((s, RDF.type, PDQ.Microphone))
         g.add((s, RDFS.label, Literal(f"{machine} 마이크")))
-        g.add((s, SOSA.observes, m))
+        g.add((s, SOSA.observes, PDQ.sound))   # 센서는 '소리'를 관측하고
+        g.add((s, PDQ.monitors, m))            # 이 기계를 감시한다
 
     for _, row in metrics_df.iterrows():
         o = DATA[f"obs/{_slug(row['file'])}"]
@@ -132,6 +141,7 @@ def build_data_graph(metrics_df: pd.DataFrame, issues_df: pd.DataFrame) -> Graph
         g.add((o, RDF.type, PDQ.AudioRecording))
         g.add((o, SOSA.hasFeatureOfInterest, DATA[f"machine/{mslug}"]))
         g.add((o, SOSA.madeBySensor, DATA[f"sensor/{mslug}_mic"]))
+        g.add((o, SOSA.observedProperty, PDQ.sound))
         g.add((o, PDQ.filePath, Literal(row["file"])))
         g.add((o, PDQ.verdict, Literal(row["verdict"])))
         for col in ("domain", "split", "label"):

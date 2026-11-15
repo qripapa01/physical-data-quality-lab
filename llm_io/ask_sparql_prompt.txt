@@ -1,0 +1,95 @@
+[지시]
+당신은 물리 데이터 품질 온톨로지에 대한 질문을 SPARQL 1.1 SELECT 질의로 번역하는 보조자입니다.
+규칙:
+1. 아래 '온톨로지 구조'에 있는 PREFIX, 클래스, 속성 이름만 쓰십시오. 없는 이름을 지어내지 마십시오.
+2. PREFIX 선언을 질의 맨 위에 모두 포함하십시오.
+3. SELECT 질의만 쓰십시오 (INSERT, DELETE 등 데이터 변경 금지).
+4. 질문이 묻는 값만 SELECT 하십시오. 개수를 물으면 COUNT 하나만, 목록을 물으면 그 목록만.
+5. 답은 ```sparql 코드블록 하나로만 쓰십시오. 설명은 쓰지 마십시오.
+
+[온톨로지 구조]
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX dqv:  <http://www.w3.org/ns/dqv#>
+PREFIX pdq:  <https://github.com/qripapa01/physical-data-quality-lab/ontology#>
+
+# ---- 온톨로지 구조 (이 이름들만 쓰십시오) ----
+# 클래스
+#   pdq:AudioRecording  녹음 파일 1개 (sosa:Observation 의 하위 클래스)
+#   pdq:Machine         기계 (rdfs:label 값: "fan", "pump", "valve" - 언어 태그 없음)
+#   pdq:Microphone      마이크 센서
+#   pdq:QualityIssue    품질 문제 기록 1건
+#   pdq:QualityRule     품질 규칙 (rdfs:label 예: "클리핑"@ko, "끊김/정지 구간"@ko)
+#   dqv:QualityMeasurement 측정값 1개,  dqv:Metric 지표,  dqv:Dimension 품질 차원
+# 녹음 파일(?obs)의 속성
+#   ?obs sosa:hasFeatureOfInterest ?machine     (녹음한 기계)
+#   ?obs sosa:madeBySensor ?sensor
+#   ?obs pdq:filePath "data/demo/fan/train/section_00_source_train_normal_0003_demo.wav"
+#        (경로 구분자는 / 또는 \ 일 수 있으니 CONTAINS 로 찾으십시오)
+#   ?obs pdq:verdict  "PASS" | "WARN" | "FAIL"
+#   ?obs pdq:label    "normal" | "anomaly"      (정상음/이상음 라벨)
+#   ?obs pdq:domain   "source" | "target"
+#   ?obs pdq:split    "train" | "test"
+#   ?obs pdq:hasIssue ?issue
+# 문제 기록(?issue)의 속성
+#   ?issue pdq:violatesRule ?rule ;  pdq:severity "WARN" | "FAIL" ;  pdq:message "0.6157 > 0.01"
+# 규칙(?rule)의 속성
+#   ?rule rdfs:label ?name ;  pdq:checksMetric ?metric
+#   규칙 IRI: pdq:R01_NAN pdq:R02_SAMPLE_RATE pdq:R03_CHANNELS pdq:R04_DURATION pdq:R05_CLIPPING
+#            pdq:R06_DC_OFFSET pdq:R07_DROPOUT pdq:R08_SILENCE pdq:R09_METADATA pdq:R10_DUPLICATE pdq:R11_OUTLIER
+# 지표(?metric)와 품질 차원
+#   ?metric dqv:inDimension ?dim .  품질 차원 IRI: pdq:Accuracy(정확성) pdq:Completeness(완전성)
+#                                    pdq:Consistency(일관성) pdq:Uniqueness(유일성)
+#   ?dim rdfs:label 은 "정확성"@ko 와 "Accuracy"@en 두 개가 있음
+#   지표 IRI: pdq:sample_rate pdq:duration_s pdq:clip_ratio pdq:dc_offset pdq:longest_flat_ms
+#            pdq:silence_ratio pdq:rms_dbfs pdq:snr_est_db pdq:spectral_flatness
+# 측정값(?mm)
+#   ?mm dqv:computedOn ?obs ; dqv:isMeasurementOf pdq:clip_ratio ; dqv:value 0.0002 (실수)
+
+[예시]
+질문: valve 기계의 녹음 파일은 몇 개인가?
+```sparql
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX pdq:  <https://github.com/qripapa01/physical-data-quality-lab/ontology#>
+SELECT (COUNT(?obs) AS ?n) WHERE {
+  ?obs a pdq:AudioRecording ; sosa:hasFeatureOfInterest ?m .
+  ?m rdfs:label "valve" .
+}
+```
+
+[요청]
+아래 여러 건을 각각 처리하고, 결과를 하나의 JSON 객체로만 답하십시오. 키는 각 건의 ID, 값은 그 건의 답(문자열 또는 JSON 객체)입니다. JSON 외의 말은 쓰지 마십시오.
+
+===== ID: Q01 =====
+질문: 전체 녹음 파일은 몇 개인가?
+
+===== ID: Q02 =====
+질문: FAIL 판정을 받은 녹음 파일은 몇 개인가?
+
+===== ID: Q03 =====
+질문: 기계별로 FAIL 판정 파일이 몇 개씩 있는가? (FAIL이 있는 기계만)
+
+===== ID: Q04 =====
+질문: 클리핑 비율이 가장 높은 녹음 파일 1개의 경로와 그 클리핑 비율은?
+
+===== ID: Q05 =====
+질문: 정확성 품질 차원에 속하는 문제 기록은 모두 몇 건인가?
+
+===== ID: Q06 =====
+질문: 가장 많이 위반된 품질 규칙의 이름과 위반 건수는?
+
+===== ID: Q07 =====
+질문: 이상(anomaly) 라벨이 붙은 녹음 파일 중 품질 문제 기록이 하나라도 있는 파일은 몇 개인가?
+
+===== ID: Q08 =====
+질문: 샘플링레이트가 16000Hz가 아닌 녹음 파일의 경로는?
+
+===== ID: Q09 =====
+질문: pump 기계의 녹음 파일 중 판정이 PASS가 아닌 파일의 경로와 판정은?
+
+===== ID: Q10 =====
+질문: train 폴더의 normal 0003번 fan 파일은 어떤 규칙을 위반했는가? 규칙 이름과 심각도를 알려줘.
+
+

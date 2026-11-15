@@ -1,0 +1,5 @@
+Hi team,
+Attached are the pump recordings from Line B (Ulsan plant).
+We used an omni condenser mic, mono, fs = 16 kHz.
+Each clip is 3 s long, 84 wav files in total.
+Best regards, Kim

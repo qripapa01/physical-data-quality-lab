@@ -1,0 +1,25 @@
+{
+ "_comment": "자연어 질문과 사람이 만든 정답 질의(gold). LLM이 만든 질의의 실행 결과를 gold 결과와 비교한다.",
+ "questions": [
+  {"id": "Q01", "question": "전체 녹음 파일은 몇 개인가?",
+   "gold": "SELECT (COUNT(?o) AS ?n) WHERE { ?o a pdq:AudioRecording }"},
+  {"id": "Q02", "question": "FAIL 판정을 받은 녹음 파일은 몇 개인가?",
+   "gold": "SELECT (COUNT(?o) AS ?n) WHERE { ?o a pdq:AudioRecording ; pdq:verdict \"FAIL\" }"},
+  {"id": "Q03", "question": "기계별로 FAIL 판정 파일이 몇 개씩 있는가? (FAIL이 있는 기계만)",
+   "gold": "SELECT ?machine (COUNT(?o) AS ?n) WHERE { ?o pdq:verdict \"FAIL\" ; sosa:hasFeatureOfInterest ?m . ?m rdfs:label ?machine } GROUP BY ?machine"},
+  {"id": "Q04", "question": "클리핑 비율이 가장 높은 녹음 파일 1개의 경로와 그 클리핑 비율은?",
+   "gold": "SELECT ?file ?v WHERE { ?mm dqv:isMeasurementOf pdq:clip_ratio ; dqv:computedOn ?o ; dqv:value ?v . ?o pdq:filePath ?file } ORDER BY DESC(?v) LIMIT 1"},
+  {"id": "Q05", "question": "정확성 품질 차원에 속하는 문제 기록은 모두 몇 건인가?",
+   "gold": "SELECT (COUNT(?i) AS ?n) WHERE { ?i a pdq:QualityIssue ; pdq:violatesRule ?r . ?r pdq:checksMetric ?mt . ?mt dqv:inDimension pdq:Accuracy }"},
+  {"id": "Q06", "question": "가장 많이 위반된 품질 규칙의 이름과 위반 건수는?",
+   "gold": "SELECT ?name (COUNT(?i) AS ?n) WHERE { ?i pdq:violatesRule ?r . ?r rdfs:label ?name } GROUP BY ?name ORDER BY DESC(?n) LIMIT 1"},
+  {"id": "Q07", "question": "이상(anomaly) 라벨이 붙은 녹음 파일 중 품질 문제 기록이 하나라도 있는 파일은 몇 개인가?",
+   "gold": "SELECT (COUNT(DISTINCT ?o) AS ?n) WHERE { ?o pdq:label \"anomaly\" ; pdq:hasIssue ?i }"},
+  {"id": "Q08", "question": "샘플링레이트가 16000Hz가 아닌 녹음 파일의 경로는?",
+   "gold": "SELECT ?file WHERE { ?mm dqv:isMeasurementOf pdq:sample_rate ; dqv:value ?v ; dqv:computedOn ?o . ?o pdq:filePath ?file FILTER(?v != 16000) }"},
+  {"id": "Q09", "question": "pump 기계의 녹음 파일 중 판정이 PASS가 아닌 파일의 경로와 판정은?",
+   "gold": "SELECT ?file ?v WHERE { ?o sosa:hasFeatureOfInterest ?m ; pdq:verdict ?v ; pdq:filePath ?file . ?m rdfs:label \"pump\" FILTER(?v != \"PASS\") }"},
+  {"id": "Q10", "question": "train 폴더의 normal 0003번 fan 파일은 어떤 규칙을 위반했는가? 규칙 이름과 심각도를 알려줘.",
+   "gold": "SELECT ?name ?sev WHERE { ?o pdq:filePath ?f ; sosa:hasFeatureOfInterest ?m ; pdq:hasIssue ?i . ?m rdfs:label \"fan\" . FILTER(CONTAINS(?f, \"train_normal_0003\")) ?i pdq:violatesRule ?r ; pdq:severity ?sev . ?r rdfs:label ?name }"}
+ ]
+}

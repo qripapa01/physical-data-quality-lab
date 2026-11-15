@@ -1,0 +1,2 @@
+Cooling fan audio — 44.1kHz / 16bit, mono, 10 s per clip, 1,000 files.
+Recorded at our Suwon test lab.

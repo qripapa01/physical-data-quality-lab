@@ -1,0 +1,4 @@
+Bearing test rig dataset
+Sensor: accelerometer (PCB 352C33), single channel
+Sampling rate: 12 kHz, segment length 20 s
+Number of files: 400

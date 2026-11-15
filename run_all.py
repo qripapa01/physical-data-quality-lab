@@ -2,6 +2,7 @@
 
 데모:      python run_all.py
 실제 데이터: python run_all.py --data <DCASE dev_data 폴더> --out results_dcase
+LLM 지정:   python run_all.py --provider ollama   (anthropic|openai|ollama|manual, 기본 auto)
 """
 import argparse
 import shutil
@@ -21,6 +22,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data/demo")
     ap.add_argument("--out", default="results")
+    ap.add_argument("--provider", default="auto")
     a = ap.parse_args()
     if a.data == "data/demo" and not (ROOT / "data" / "demo").exists():
         run("scripts/00_make_demo_data.py", "--out", "data/demo")
@@ -29,7 +31,9 @@ def main():
     run("scripts/02_inject_and_validate.py", "--data", a.data, "--results", a.out)
     run("scripts/03_build_ontology.py", "--results", a.out)
     run("scripts/04_query_ontology.py", "--results", a.out)
-    run("scripts/05_llm_report.py", "--results", a.out)
+    run("scripts/05_llm_report.py", "--results", a.out, "--provider", a.provider)
+    run("scripts/06_llm_metadata.py", "--results", a.out, "--provider", a.provider)
+    run("scripts/07_llm_ask.py", "--results", a.out, "--provider", a.provider)
 
 
 if __name__ == "__main__":

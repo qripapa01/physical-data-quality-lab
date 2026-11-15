@@ -60,37 +60,6 @@ def build_summary(metrics_df, issues_df, query_results: dict, cfg: dict) -> dict
     }
 
 
-def _call_anthropic(prompt: str) -> str:
-    import anthropic
-
-    client = anthropic.Anthropic()
-    model = os.environ.get("PDQ_LLM_MODEL", "claude-sonnet-5-5")
-    msg = client.messages.create(model=model, max_tokens=2000, system=SYSTEM_PROMPT,
-                                 messages=[{"role": "user", "content": prompt}])
-    return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-
-
-def _call_openai(prompt: str) -> str:
-    from openai import OpenAI
-
-    client = OpenAI()
-    model = os.environ.get("PDQ_LLM_MODEL", "gpt-4o-mini")
-    r = client.chat.completions.create(model=model, messages=[
-        {"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt}])
-    return r.choices[0].message.content
-
-
-def pick_provider() -> str:
-    p = os.environ.get("PDQ_LLM_PROVIDER", "auto").lower()
-    if p != "auto":
-        return p
-    if os.environ.get("ANTHROPIC_API_KEY"):
-        return "anthropic"
-    if os.environ.get("OPENAI_API_KEY"):
-        return "openai"
-    return "template"
-
-
 def template_report(s: dict) -> str:
     """LLM 없이 만드는 보고서(같은 목차)."""
     d = s["dataset"]
@@ -166,15 +135,15 @@ def check_numbers(report: str, summary: dict) -> list[str]:
     return sorted(set(unknown))
 
 
-def write_report(summary: dict) -> tuple[str, str, list[str]]:
-    provider = pick_provider()
+def write_report(summary: dict, provider: str | None = None) -> tuple[str, str, list[str]]:
+    """provider: anthropic|openai|ollama|manual|None(템플릿). 수동 모드에서 답이 없으면 ManualPending."""
+    from .llm_client import ask
+
     prompt = ("다음은 규칙 기반 품질 점검과 온톨로지 질의 결과(JSON)입니다. "
               "이 내용만으로 품질 점검 보고서 초안을 작성하십시오.\n\n"
               + json.dumps(summary, ensure_ascii=False, indent=1))
-    if provider == "anthropic":
-        body = _call_anthropic(prompt)
-    elif provider == "openai":
-        body = _call_openai(prompt)
+    if provider in (None, "template"):
+        body, provider = template_report(summary), "template"
     else:
-        body = template_report(summary)
+        body = ask(SYSTEM_PROMPT, prompt, provider=provider, tag="report", max_tokens=2500)
     return body, provider, check_numbers(body, summary)

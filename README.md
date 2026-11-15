@@ -10,6 +10,8 @@
 3. **결함 주입 시험**: 깨끗한 파일에 알고 있는 결함을 세기별로 넣어, 점검기가 어디까지 잡는지(검출 한계) 시험합니다.
 4. **온톨로지**: 결과를 W3C 표준 어휘(SOSA, DQV)로 지식그래프(RDF)에 담고 SPARQL로 질의합니다.
 5. **LLM 보고서**: 코드가 만든 요약만 LLM에 주어 보고서 초안을 쓰게 하고, 보고서의 숫자를 코드로 대조합니다.
+6. **LLM 메타데이터 정리**: 기업마다 제각각인 데이터 설명서를 LLM이 표준 항목으로 정리 → 코드가 형식 검사·실제 데이터와 대조 → 온톨로지 확장(v0.2).
+7. **LLM 질의 번역**: 말로 한 질문을 LLM이 SPARQL로 번역 → 온톨로지가 답을 냄 → 정답 질의와 결과 비교로 정확도 측정.
 
 > 원칙: **숫자 계산과 판정은 코드가, 해석과 문장은 LLM이, 최종 승인은 사람이** 합니다.
 
@@ -21,7 +23,9 @@ WAV 파일들
   │ 02_inject_and_validate.py 결함 주입 → 검출률     → injection_summary.csv
   │ 03_build_ontology.py     RDF 지식그래프 생성     → quality_graph.ttl
   │ 04_query_ontology.py     SPARQL 질의             → ontology_queries.md
-  └ 05_llm_report.py         LLM 보고서 + 숫자 대조  → quality_report.md
+  │ 05_llm_report.py         LLM 보고서 + 숫자 대조  → quality_report.md
+  │ 06_llm_metadata.py       설명서 → 메타데이터 → 온톨로지 → metadata_eval.csv, metadata_graph.ttl
+  └ 07_llm_ask.py            질문 → SPARQL → 정확도  → ask_eval.csv, ask_log.md
 ```
 
 ## 빠른 실행 (데모 데이터, 약 1분)
@@ -63,7 +67,7 @@ python scripts/05_llm_report.py --results results_dcase
 
 **2) 결함 주입 시험: 기준값보다 약한 결함은 설계상 놓친다**
 
-8종 결함을 세기별(약/중/강)로 10개씩, 200개를 주입했습니다. 기대한 규칙이 잡은 비율은 68%, 어떤 규칙이든 잡은 비율은 81%입니다.
+8종 결함을 세기별(약/중/강)로 10개씩, 200개를 주입했습니다. 그 결함을 잡도록 만든 규칙(목표 규칙, target rule)이 잡은 비율은 68%, 어떤 규칙이든 WARN/FAIL을 낸 비율(전체 규칙, any rule)은 81%입니다.
 강한 결함은 모두 잡았지만, 기준값 아래의 약한 결함(10 ms 끊김, 길이 3% 부족 등)은 놓쳤습니다.
 **즉 기준값을 정하는 일이 곧 품질 정책**입니다. 절대 기준이 놓친 일부 결함은 "같은 기기 대비 통계적 이상치" 규칙이 보완했습니다.
 
@@ -90,13 +94,42 @@ python scripts/05_llm_report.py --results results_dcase
 
 스키마는 [`ontology/pdq_schema.ttl`](ontology/pdq_schema.ttl) 이며 Protégé로 열어 볼 수 있습니다.
 
+**v0.2 변경**
+- SOSA 표준에 맞게 수정: `센서 sosa:observes 기계` → `센서 sosa:observes pdq:sound`(관측 속성) + `센서 pdq:monitors 기계`
+- 확장 스키마 [`ontology/pdq_extension.ttl`](ontology/pdq_extension.ttl): 기계 종류 계층(회전 기계 등), 센서 종류(가속도계·전류·온도),
+  관측 속성(진동·전류·온도), 데이터셋(`dcat:Dataset`)
+
+## LLM 연결 방법 (`--provider`)
+
+| 방식 | 비용 | 준비 | 특징 |
+|---|---|---|---|
+| `manual` | 무료 | 없음 | 질문 파일(`llm_io/*_prompt.txt`)을 Claude 채팅 등에 붙여넣고, 답을 `*_response.txt` 로 저장 후 재실행 |
+| `ollama` | 무료 | [Ollama](https://ollama.com) 설치 + `ollama pull qwen2.5:7b` | **내 PC 안에서 실행 → 데이터가 외부로 나가지 않음** (시험기관 보안에 적합) |
+| `anthropic` / `openai` | 유료 | API 키 환경변수 | 가장 정확, 대량 처리 |
+
+```bash
+python scripts/06_llm_metadata.py --provider manual
+python scripts/07_llm_ask.py --provider ollama --answer
+python scripts/07_llm_ask.py --provider ollama --q "valve 기계에서 WARN 판정 파일은 몇 개야?"
+```
+
+## LLM 기능의 검증 방법
+
+| 기능 | LLM이 하는 일 | 코드가 검증하는 일 | 정답 |
+|---|---|---|---|
+| 05 보고서 | 요약을 문장으로 | 보고서 숫자를 요약과 대조 | - |
+| 06 메타데이터 | 설명서 12개 → JSON | 형식 검사(허용값·범위), 실제 측정값과 대조 | `examples/metadata/ground_truth.json` |
+| 07 질의 번역 | 질문 10개 → SPARQL | 안전 검사(SELECT만), 실행 결과를 정답 질의 결과와 비교 | `examples/questions.json` |
+
+06은 LLM 없이 키워드·정규식만 쓰는 추출기와 정확도를 비교합니다 (데모: 규칙 81.9%).
+
 ## LLM 보고서와 환각 방지
 
 - LLM에는 원본 오디오가 아니라 **집계된 요약(JSON)만** 보냅니다.
 - 프롬프트로 "요약에 없는 숫자 금지, 판정 변경 금지, 원인은 '추정'으로 표시"를 지시합니다.
 - 보고서의 숫자를 모두 뽑아 **요약과 코드로 대조**하고, 없는 숫자는 "확인 필요"로 표시합니다.
-- `ANTHROPIC_API_KEY` 또는 `OPENAI_API_KEY` 가 있으면 LLM을, 없으면 템플릿 보고서를 씁니다.
-  `PDQ_LLM_PROVIDER`, `PDQ_LLM_MODEL` 환경변수로 바꿀 수 있습니다.
+- `--provider` 를 주지 않으면 API 키 → 내 PC의 Ollama 순서로 찾고, 없으면 템플릿 보고서를 씁니다.
+  모델 이름은 `PDQ_LLM_MODEL` 환경변수로 바꿉니다.
 
 ## 한계와 다음 단계
 

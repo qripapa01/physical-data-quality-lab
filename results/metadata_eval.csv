@@ -1,0 +1,145 @@
+﻿method,doc,field,pred,truth,correct
+규칙(키워드·정규식),D01,machine_type,fan,fan,True
+규칙(키워드·정규식),D01,sensor_type,microphone,microphone,True
+규칙(키워드·정규식),D01,sample_rate_hz,16000,16000,True
+규칙(키워드·정규식),D01,channels,1,1,True
+규칙(키워드·정규식),D01,duration_s,3.0,3,True
+규칙(키워드·정규식),D01,file_count,1,84,False
+규칙(키워드·정규식),D02,machine_type,pump,pump,True
+규칙(키워드·정규식),D02,sensor_type,microphone,microphone,True
+규칙(키워드·정규식),D02,sample_rate_hz,16000,16000,True
+규칙(키워드·정규식),D02,channels,1,1,True
+규칙(키워드·정규식),D02,duration_s,3.0,3,True
+규칙(키워드·정규식),D02,file_count,84,84,True
+규칙(키워드·정규식),D03,machine_type,valve,valve,True
+규칙(키워드·정규식),D03,sensor_type,microphone,microphone,True
+규칙(키워드·정규식),D03,sample_rate_hz,16000,16000,True
+규칙(키워드·정규식),D03,channels,1,1,True
+규칙(키워드·정규식),D03,duration_s,3.0,3,True
+규칙(키워드·정규식),D03,file_count,,84,False
+규칙(키워드·정규식),D04,machine_type,motor,motor,True
+규칙(키워드·정규식),D04,sensor_type,accelerometer,accelerometer,True
+규칙(키워드·정규식),D04,sample_rate_hz,25600,25600,True
+규칙(키워드·정규식),D04,channels,1,3,False
+규칙(키워드·정규식),D04,duration_s,10.0,10,True
+규칙(키워드·정규식),D04,file_count,120,120,True
+규칙(키워드·정규식),D05,machine_type,bearing,bearing,True
+규칙(키워드·정규식),D05,sensor_type,accelerometer,accelerometer,True
+규칙(키워드·정규식),D05,sample_rate_hz,12000,12000,True
+규칙(키워드·정규식),D05,channels,,1,False
+규칙(키워드·정규식),D05,duration_s,20.0,20,True
+규칙(키워드·정규식),D05,file_count,,400,False
+규칙(키워드·정규식),D06,machine_type,compressor,compressor,True
+규칙(키워드·정규식),D06,sensor_type,current,current,True
+규칙(키워드·정규식),D06,sample_rate_hz,,10000,False
+규칙(키워드·정규식),D06,channels,1,1,True
+규칙(키워드·정규식),D06,duration_s,,60,False
+규칙(키워드·정규식),D06,file_count,,,True
+규칙(키워드·정규식),D07,machine_type,gearbox,gearbox,True
+규칙(키워드·정규식),D07,sensor_type,microphone,microphone,True
+규칙(키워드·정규식),D07,sample_rate_hz,,48000,False
+규칙(키워드·정규식),D07,channels,,2,False
+규칙(키워드·정규식),D07,duration_s,5.0,5,True
+규칙(키워드·정규식),D07,file_count,2,200,False
+규칙(키워드·정규식),D08,machine_type,conveyor,conveyor,True
+규칙(키워드·정규식),D08,sensor_type,temperature,temperature,True
+규칙(키워드·정규식),D08,sample_rate_hz,1,1,True
+규칙(키워드·정규식),D08,channels,1,1,True
+규칙(키워드·정규식),D08,duration_s,1.0,86400,False
+규칙(키워드·정규식),D08,file_count,30,30,True
+규칙(키워드·정규식),D09,machine_type,fan,fan,True
+규칙(키워드·정규식),D09,sensor_type,,microphone,False
+규칙(키워드·정규식),D09,sample_rate_hz,44100,44100,True
+규칙(키워드·정규식),D09,channels,1,1,True
+규칙(키워드·정규식),D09,duration_s,10.0,10,True
+규칙(키워드·정규식),D09,file_count,1000,1000,True
+규칙(키워드·정규식),D10,machine_type,pump,pump,True
+규칙(키워드·정규식),D10,sensor_type,accelerometer,accelerometer,True
+규칙(키워드·정규식),D10,sample_rate_hz,51200,51200,True
+규칙(키워드·정규식),D10,channels,2,2,True
+규칙(키워드·정규식),D10,duration_s,,,True
+규칙(키워드·정규식),D10,file_count,50,50,True
+규칙(키워드·정규식),D11,machine_type,valve,valve,True
+규칙(키워드·정규식),D11,sensor_type,microphone,microphone,True
+규칙(키워드·정규식),D11,sample_rate_hz,22050,22050,True
+규칙(키워드·정규식),D11,channels,1,1,True
+규칙(키워드·정규식),D11,duration_s,2.5,2.5,True
+규칙(키워드·정규식),D11,file_count,300,300,True
+규칙(키워드·정규식),D12,machine_type,motor,other,False
+규칙(키워드·정규식),D12,sensor_type,current,current,True
+규칙(키워드·정규식),D12,sample_rate_hz,1000,1000,True
+규칙(키워드·정규식),D12,channels,6,6,True
+규칙(키워드·정규식),D12,duration_s,30.0,30,True
+규칙(키워드·정규식),D12,file_count,60,60,True
+LLM (manual),D01,machine_type,fan,fan,True
+LLM (manual),D01,sensor_type,microphone,microphone,True
+LLM (manual),D01,sample_rate_hz,16000,16000,True
+LLM (manual),D01,channels,1,1,True
+LLM (manual),D01,duration_s,3,3,True
+LLM (manual),D01,file_count,84,84,True
+LLM (manual),D02,machine_type,pump,pump,True
+LLM (manual),D02,sensor_type,microphone,microphone,True
+LLM (manual),D02,sample_rate_hz,16000,16000,True
+LLM (manual),D02,channels,1,1,True
+LLM (manual),D02,duration_s,3,3,True
+LLM (manual),D02,file_count,84,84,True
+LLM (manual),D03,machine_type,valve,valve,True
+LLM (manual),D03,sensor_type,microphone,microphone,True
+LLM (manual),D03,sample_rate_hz,16000,16000,True
+LLM (manual),D03,channels,1,1,True
+LLM (manual),D03,duration_s,3,3,True
+LLM (manual),D03,file_count,84,84,True
+LLM (manual),D04,machine_type,motor,motor,True
+LLM (manual),D04,sensor_type,accelerometer,accelerometer,True
+LLM (manual),D04,sample_rate_hz,25600,25600,True
+LLM (manual),D04,channels,3,3,True
+LLM (manual),D04,duration_s,10,10,True
+LLM (manual),D04,file_count,120,120,True
+LLM (manual),D05,machine_type,bearing,bearing,True
+LLM (manual),D05,sensor_type,accelerometer,accelerometer,True
+LLM (manual),D05,sample_rate_hz,12000,12000,True
+LLM (manual),D05,channels,1,1,True
+LLM (manual),D05,duration_s,20,20,True
+LLM (manual),D05,file_count,400,400,True
+LLM (manual),D06,machine_type,compressor,compressor,True
+LLM (manual),D06,sensor_type,current,current,True
+LLM (manual),D06,sample_rate_hz,10000,10000,True
+LLM (manual),D06,channels,1,1,True
+LLM (manual),D06,duration_s,60,60,True
+LLM (manual),D06,file_count,,,True
+LLM (manual),D07,machine_type,gearbox,gearbox,True
+LLM (manual),D07,sensor_type,microphone,microphone,True
+LLM (manual),D07,sample_rate_hz,48000,48000,True
+LLM (manual),D07,channels,2,2,True
+LLM (manual),D07,duration_s,5,5,True
+LLM (manual),D07,file_count,200,200,True
+LLM (manual),D08,machine_type,conveyor,conveyor,True
+LLM (manual),D08,sensor_type,temperature,temperature,True
+LLM (manual),D08,sample_rate_hz,1,1,True
+LLM (manual),D08,channels,1,1,True
+LLM (manual),D08,duration_s,86400,86400,True
+LLM (manual),D08,file_count,30,30,True
+LLM (manual),D09,machine_type,fan,fan,True
+LLM (manual),D09,sensor_type,microphone,microphone,True
+LLM (manual),D09,sample_rate_hz,44100,44100,True
+LLM (manual),D09,channels,1,1,True
+LLM (manual),D09,duration_s,10,10,True
+LLM (manual),D09,file_count,1000,1000,True
+LLM (manual),D10,machine_type,pump,pump,True
+LLM (manual),D10,sensor_type,accelerometer,accelerometer,True
+LLM (manual),D10,sample_rate_hz,51200,51200,True
+LLM (manual),D10,channels,2,2,True
+LLM (manual),D10,duration_s,,,True
+LLM (manual),D10,file_count,50,50,True
+LLM (manual),D11,machine_type,valve,valve,True
+LLM (manual),D11,sensor_type,microphone,microphone,True
+LLM (manual),D11,sample_rate_hz,22050,22050,True
+LLM (manual),D11,channels,1,1,True
+LLM (manual),D11,duration_s,2.5,2.5,True
+LLM (manual),D11,file_count,300,300,True
+LLM (manual),D12,machine_type,motor,other,False
+LLM (manual),D12,sensor_type,current,current,True
+LLM (manual),D12,sample_rate_hz,1000,1000,True
+LLM (manual),D12,channels,6,6,True
+LLM (manual),D12,duration_s,30,30,True
+LLM (manual),D12,file_count,60,60,True

@@ -1,0 +1,109 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pdq: <https://github.com/qripapa01/physical-data-quality-lab/ontology#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+pdq:Accelerometer a owl:Class ;
+    rdfs:label "가속도계"@ko ;
+    rdfs:subClassOf sosa:Sensor .
+
+pdq:Bearing a owl:Class ;
+    rdfs:label "베어링"@ko ;
+    rdfs:subClassOf pdq:RotatingMachine .
+
+pdq:Compressor a owl:Class ;
+    rdfs:label "컴프레서"@ko ;
+    rdfs:subClassOf pdq:RotatingMachine .
+
+pdq:Conveyor a owl:Class ;
+    rdfs:label "컨베이어"@ko ;
+    rdfs:subClassOf pdq:Machine .
+
+pdq:CurrentSensor a owl:Class ;
+    rdfs:label "전류 센서"@ko ;
+    rdfs:subClassOf sosa:Sensor .
+
+pdq:Fan a owl:Class ;
+    rdfs:label "팬"@ko ;
+    rdfs:subClassOf pdq:RotatingMachine .
+
+pdq:Gearbox a owl:Class ;
+    rdfs:label "기어박스"@ko ;
+    rdfs:subClassOf pdq:RotatingMachine .
+
+pdq:Motor a owl:Class ;
+    rdfs:label "모터"@ko ;
+    rdfs:subClassOf pdq:RotatingMachine .
+
+pdq:OtherMachine a owl:Class ;
+    rdfs:label "기타 기계"@ko ;
+    rdfs:subClassOf pdq:Machine .
+
+pdq:OtherSensor a owl:Class ;
+    rdfs:label "기타 센서"@ko ;
+    rdfs:subClassOf sosa:Sensor .
+
+pdq:Pump a owl:Class ;
+    rdfs:label "펌프"@ko ;
+    rdfs:subClassOf pdq:RotatingMachine .
+
+pdq:TemperatureSensor a owl:Class ;
+    rdfs:label "온도 센서"@ko ;
+    rdfs:subClassOf sosa:Sensor .
+
+pdq:Valve a owl:Class ;
+    rdfs:label "밸브"@ko ;
+    rdfs:subClassOf pdq:Machine .
+
+pdq:aboutMachine a owl:ObjectProperty ;
+    rdfs:label "대상 기계"@ko ;
+    rdfs:domain pdq:Dataset ;
+    rdfs:range pdq:Machine .
+
+pdq:channelCount a owl:DatatypeProperty ;
+    rdfs:label "채널 수"@ko .
+
+pdq:clipDurationS a owl:DatatypeProperty ;
+    rdfs:label "파일 길이(초)"@ko .
+
+pdq:crossCheckNote a owl:DatatypeProperty ;
+    rdfs:label "실제 데이터 대조 결과"@ko .
+
+pdq:electricCurrent a sosa:ObservableProperty ;
+    rdfs:label "전류"@ko .
+
+pdq:extractedBy a owl:DatatypeProperty ;
+    rdfs:label "추출 방식(LLM/규칙)"@ko .
+
+pdq:fileCount a owl:DatatypeProperty ;
+    rdfs:label "파일 수"@ko .
+
+pdq:location a owl:DatatypeProperty ;
+    rdfs:label "수집 장소"@ko .
+
+pdq:sampleRateHz a owl:DatatypeProperty ;
+    rdfs:label "샘플링레이트(Hz)"@ko .
+
+pdq:sourceDocument a owl:DatatypeProperty ;
+    rdfs:label "원본 설명서"@ko .
+
+pdq:temperature a sosa:ObservableProperty ;
+    rdfs:label "온도"@ko .
+
+pdq:usesSensor a owl:ObjectProperty ;
+    rdfs:label "사용 센서"@ko ;
+    rdfs:domain pdq:Dataset ;
+    rdfs:range sosa:Sensor .
+
+pdq:vibration a sosa:ObservableProperty ;
+    rdfs:label "진동"@ko .
+
+pdq:Dataset a owl:Class ;
+    rdfs:label "데이터셋(기업 제출 단위)"@ko ;
+    rdfs:subClassOf dcat:Dataset .
+
+pdq:RotatingMachine a owl:Class ;
+    rdfs:label "회전 기계"@ko ;
+    rdfs:subClassOf pdq:Machine .
+

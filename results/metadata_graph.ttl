@@ -1,0 +1,214 @@
+@prefix pdq: <https://github.com/qripapa01/physical-data-quality-lab/ontology#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D01> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D01> ;
+    pdq:clipDurationS 3e+00 ;
+    pdq:crossCheckNote "설명서는 16000Hz 인데 실제 1개 파일은 다름 (8000Hz)" ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 84 ;
+    pdq:location "창원 1공장 조립라인" ;
+    pdq:sourceDocument "D01.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D01> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D02> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D02> ;
+    pdq:clipDurationS 3e+00 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 84 ;
+    pdq:location "Line B (Ulsan plant)" ;
+    pdq:sourceDocument "D02.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D02> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D03> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D03> ;
+    pdq:clipDurationS 3e+00 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 84 ;
+    pdq:location "진주 시험동" ;
+    pdq:sourceDocument "D03.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D03> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D04> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D04> ;
+    pdq:clipDurationS 1e+01 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 120 ;
+    pdq:location "평택 2라인" ;
+    pdq:sourceDocument "D04.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D04> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D05> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D05> ;
+    pdq:clipDurationS 2e+01 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 400 ;
+    pdq:sourceDocument "D05.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D05> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D06> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D06> ;
+    pdq:clipDurationS 6e+01 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:sourceDocument "D06.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D06> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D07> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D07> ;
+    pdq:clipDurationS 5e+00 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 200 ;
+    pdq:location "구미 공장" ;
+    pdq:sourceDocument "D07.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D07> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D08> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D08> ;
+    pdq:clipDurationS 8.64e+04 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 30 ;
+    pdq:sourceDocument "D08.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D08> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D09> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D09> ;
+    pdq:clipDurationS 1e+01 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 1000 ;
+    pdq:location "Suwon test lab" ;
+    pdq:sourceDocument "D09.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D09> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D10> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D10> ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 50 ;
+    pdq:sourceDocument "D10.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D10> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D11> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D11> ;
+    pdq:clipDurationS 2.5e+00 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 300 ;
+    pdq:sourceDocument "D11.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D11> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/dataset/D12> a pdq:Dataset ;
+    pdq:aboutMachine <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D12> ;
+    pdq:clipDurationS 3e+01 ;
+    pdq:extractedBy "LLM (manual)" ;
+    pdq:fileCount 60 ;
+    pdq:sourceDocument "D12.txt" ;
+    pdq:usesSensor <https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D12> .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D01> a pdq:Microphone ;
+    sosa:observes pdq:sound ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D01> ;
+    pdq:sampleRateHz 16000 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D02> a pdq:Microphone ;
+    sosa:observes pdq:sound ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D02> ;
+    pdq:sampleRateHz 16000 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D03> a pdq:Microphone ;
+    sosa:observes pdq:sound ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D03> ;
+    pdq:sampleRateHz 16000 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D04> a pdq:Accelerometer ;
+    sosa:observes pdq:vibration ;
+    pdq:channelCount 3 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D04> ;
+    pdq:sampleRateHz 25600 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D05> a pdq:Accelerometer ;
+    sosa:observes pdq:vibration ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D05> ;
+    pdq:sampleRateHz 12000 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D06> a pdq:CurrentSensor ;
+    sosa:observes pdq:electricCurrent ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D06> ;
+    pdq:sampleRateHz 10000 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D07> a pdq:Microphone ;
+    sosa:observes pdq:sound ;
+    pdq:channelCount 2 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D07> ;
+    pdq:sampleRateHz 48000 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D08> a pdq:TemperatureSensor ;
+    sosa:observes pdq:temperature ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D08> ;
+    pdq:sampleRateHz 1 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D09> a pdq:Microphone ;
+    sosa:observes pdq:sound ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D09> ;
+    pdq:sampleRateHz 44100 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D10> a pdq:Accelerometer ;
+    sosa:observes pdq:vibration ;
+    pdq:channelCount 2 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D10> ;
+    pdq:sampleRateHz 51200 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D11> a pdq:Microphone ;
+    sosa:observes pdq:sound ;
+    pdq:channelCount 1 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D11> ;
+    pdq:sampleRateHz 22050 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/sensor/D12> a pdq:CurrentSensor ;
+    sosa:observes pdq:electricCurrent ;
+    pdq:channelCount 6 ;
+    pdq:monitors <https://github.com/qripapa01/physical-data-quality-lab/data/machine/D12> ;
+    pdq:sampleRateHz 1000 .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D01> a pdq:Fan ;
+    rdfs:label "D01 fan" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D02> a pdq:Pump ;
+    rdfs:label "D02 pump" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D03> a pdq:Valve ;
+    rdfs:label "D03 valve" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D04> a pdq:Motor ;
+    rdfs:label "D04 motor" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D05> a pdq:Bearing ;
+    rdfs:label "D05 bearing" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D06> a pdq:Compressor ;
+    rdfs:label "D06 compressor" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D07> a pdq:Gearbox ;
+    rdfs:label "D07 gearbox" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D08> a pdq:Conveyor ;
+    rdfs:label "D08 conveyor" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D09> a pdq:Fan ;
+    rdfs:label "D09 fan" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D10> a pdq:Pump ;
+    rdfs:label "D10 pump" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D11> a pdq:Valve ;
+    rdfs:label "D11 valve" .
+
+<https://github.com/qripapa01/physical-data-quality-lab/data/machine/D12> a pdq:Motor ;
+    rdfs:label "D12 motor" .
+
