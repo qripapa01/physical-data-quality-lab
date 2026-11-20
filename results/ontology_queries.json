@@ -77,32 +77,32 @@
  ],
  "Q3_clipping_over_threshold": [
   {
-   "file": "data\\demo\\fan\\train\\section_00_source_train_normal_0003_demo.wav",
+   "file": "data/demo/fan/train/section_00_source_train_normal_0003_demo.wav",
    "machine": "fan",
    "clip_ratio": 0.6157083
   }
  ],
  "Q4_fail_trace": [
   {
-   "file": "data\\demo\\fan\\test\\section_00_source_test_normal_0007_demo.wav",
+   "file": "data/demo/fan/test/section_00_source_test_normal_0007_demo.wav",
    "machine": "fan",
    "rule": "샘플링레이트 불일치",
    "message": "8000 Hz != 16000 Hz"
   },
   {
-   "file": "data\\demo\\fan\\train\\section_00_source_train_normal_0003_demo.wav",
+   "file": "data/demo/fan/train/section_00_source_train_normal_0003_demo.wav",
    "machine": "fan",
    "rule": "클리핑",
    "message": "0.6157 > 0.01"
   },
   {
-   "file": "data\\demo\\pump\\train\\section_00_source_train_normal_0005_demo.wav",
+   "file": "data/demo/pump/train/section_00_source_train_normal_0005_demo.wav",
    "machine": "pump",
    "rule": "끊김/정지 구간",
    "message": "300ms > 100.0ms"
   },
   {
-   "file": "data\\demo\\valve\\test\\section_00_target_test_normal_0002_demo.wav",
+   "file": "data/demo/valve/test/section_00_target_test_normal_0002_demo.wav",
    "machine": "valve",
    "rule": "내용이 같은 중복 파일",
    "message": "section_00_target_test_normal_0001_demo.wav 와 내용 동일"

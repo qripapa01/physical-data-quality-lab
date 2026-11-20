@@ -1,15 +1,15 @@
 file,machine,domain,rule_id,rule_name,metric,dimension,severity,value,threshold,message
-data\demo\fan\test\section_00_source_test_normal_0007_demo.wav,fan,source,R02_SAMPLE_RATE,샘플링레이트 불일치,sample_rate,Consistency,FAIL,8000,16000,8000 Hz != 16000 Hz
-data\demo\fan\train\section_00_source_train_normal_0003_demo.wav,fan,source,R05_CLIPPING,클리핑,clip_ratio,Accuracy,FAIL,0.6157083333333333,0.01,0.6157 > 0.01
-data\demo\fan\train\section_00_source_train_normal_0003_demo.wav,fan,source,R06_DC_OFFSET,DC 오프셋,dc_offset,Accuracy,WARN,0.02213889439900716,0.01,0.02214 > 0.01
-data\demo\pump\train\section_00_source_train_normal_0005_demo.wav,pump,source,R07_DROPOUT,끊김/정지 구간,longest_flat_ms,Completeness,FAIL,300.0,100.0,300ms > 100.0ms
-data\demo\valve\test\section_00_target_test_normal_0002_demo.wav,valve,target,R10_DUPLICATE,내용이 같은 중복 파일,md5,Uniqueness,FAIL,f0159fca,unique,section_00_target_test_normal_0001_demo.wav 와 내용 동일
-data\demo\fan\train\section_00_source_train_normal_0003_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,14.75,5.0,rms_dbfs robust z = 14.7
-data\demo\fan\test\section_00_source_test_normal_0007_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,15.68,5.0,spectral_flatness robust z = 15.7
-data\demo\fan\train\section_00_source_train_normal_0003_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,17.71,5.0,spectral_flatness robust z = 17.7
-data\demo\fan\train\section_00_source_train_normal_0003_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-9.25,5.0,snr_est_db robust z = -9.3
-data\demo\pump\train\section_00_source_train_normal_0005_demo.wav,pump,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,20.07,5.0,snr_est_db robust z = 20.1
-data\demo\valve\test\section_00_source_test_anomaly_0001_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-5.85,5.0,spectral_flatness robust z = -5.8
-data\demo\valve\test\section_00_source_test_anomaly_0003_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-5.36,5.0,spectral_flatness robust z = -5.4
-data\demo\valve\test\section_00_source_test_anomaly_0005_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-5.14,5.0,spectral_flatness robust z = -5.1
-data\demo\valve\test\section_00_source_test_anomaly_0008_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-6.3,5.0,spectral_flatness robust z = -6.3
+data/demo/fan/test/section_00_source_test_normal_0007_demo.wav,fan,source,R02_SAMPLE_RATE,샘플링레이트 불일치,sample_rate,Consistency,FAIL,8000,16000,8000 Hz != 16000 Hz
+data/demo/fan/train/section_00_source_train_normal_0003_demo.wav,fan,source,R05_CLIPPING,클리핑,clip_ratio,Accuracy,FAIL,0.6157083333333333,0.01,0.6157 > 0.01
+data/demo/fan/train/section_00_source_train_normal_0003_demo.wav,fan,source,R06_DC_OFFSET,DC 오프셋,dc_offset,Accuracy,WARN,0.02213889439900716,0.01,0.02214 > 0.01
+data/demo/pump/train/section_00_source_train_normal_0005_demo.wav,pump,source,R07_DROPOUT,끊김/정지 구간,longest_flat_ms,Completeness,FAIL,300.0,100.0,300ms > 100.0ms
+data/demo/valve/test/section_00_target_test_normal_0002_demo.wav,valve,target,R10_DUPLICATE,내용이 같은 중복 파일,md5,Uniqueness,FAIL,f0159fca,unique,section_00_target_test_normal_0001_demo.wav 와 내용 동일
+data/demo/fan/train/section_00_source_train_normal_0003_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,14.75,5.0,rms_dbfs robust z = 14.7
+data/demo/fan/test/section_00_source_test_normal_0007_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,15.68,5.0,spectral_flatness robust z = 15.7
+data/demo/fan/train/section_00_source_train_normal_0003_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,17.71,5.0,spectral_flatness robust z = 17.7
+data/demo/fan/train/section_00_source_train_normal_0003_demo.wav,fan,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-9.25,5.0,snr_est_db robust z = -9.3
+data/demo/pump/train/section_00_source_train_normal_0005_demo.wav,pump,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,20.07,5.0,snr_est_db robust z = 20.1
+data/demo/valve/test/section_00_source_test_anomaly_0001_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-5.85,5.0,spectral_flatness robust z = -5.8
+data/demo/valve/test/section_00_source_test_anomaly_0003_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-5.36,5.0,spectral_flatness robust z = -5.4
+data/demo/valve/test/section_00_source_test_anomaly_0005_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-5.14,5.0,spectral_flatness robust z = -5.1
+data/demo/valve/test/section_00_source_test_anomaly_0008_demo.wav,valve,source,R11_OUTLIER,같은 기기·도메인 대비 통계적 이상치,robust_z,Accuracy,WARN,-6.3,5.0,spectral_flatness robust z = -6.3

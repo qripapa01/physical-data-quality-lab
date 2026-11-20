@@ -22,9 +22,6 @@ SELECT ?dataset ?machineClass WHERE {
 | D02.txt   | 펌프             |
 | D04.txt   | 모터             |
 | D05.txt   | 베어링            |
-| D06.txt   | 컴프레서           |
-| D07.txt   | 기어박스           |
-| D09.txt   | 팬              |
 | D10.txt   | 펌프             |
 | D12.txt   | 모터             |
 
@@ -87,3 +84,4 @@ SELECT ?dataset ?note WHERE {
 | dataset   | note                                  |
 |:----------|:--------------------------------------|
 | D01.txt   | 설명서는 16000Hz 인데 실제 1개 파일은 다름 (8000Hz) |
+| D01.txt   | 설명서는 1개 인데 실제 84개                     |

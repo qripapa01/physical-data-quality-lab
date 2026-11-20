@@ -64,7 +64,7 @@ ORDER BY DESC(?clip_ratio) LIMIT 20
 
 | file                                                             | machine   |   clip_ratio |
 |:-----------------------------------------------------------------|:----------|-------------:|
-| data\demo\fan\train\section_00_source_train_normal_0003_demo.wav | fan       |     0.615708 |
+| data/demo/fan/train/section_00_source_train_normal_0003_demo.wav | fan       |     0.615708 |
 
 
 ## Q4_fail_trace: FAIL 판정을 받은 파일과 그 근거(규칙, 측정 설명)는? (추적성)
@@ -82,8 +82,8 @@ ORDER BY ?machine ?file LIMIT 30
 
 | file                                                              | machine   | rule         | message                                             |
 |:------------------------------------------------------------------|:----------|:-------------|:----------------------------------------------------|
-| data\demo\fan\test\section_00_source_test_normal_0007_demo.wav    | fan       | 샘플링레이트 불일치   | 8000 Hz != 16000 Hz                                 |
-| data\demo\fan\train\section_00_source_train_normal_0003_demo.wav  | fan       | 클리핑          | 0.6157 > 0.01                                       |
-| data\demo\pump\train\section_00_source_train_normal_0005_demo.wav | pump      | 끊김/정지 구간     | 300ms > 100.0ms                                     |
-| data\demo\valve\test\section_00_target_test_normal_0002_demo.wav  | valve     | 내용이 같은 중복 파일 | section_00_target_test_normal_0001_demo.wav 와 내용 동일 |
+| data/demo/fan/test/section_00_source_test_normal_0007_demo.wav    | fan       | 샘플링레이트 불일치   | 8000 Hz != 16000 Hz                                 |
+| data/demo/fan/train/section_00_source_train_normal_0003_demo.wav  | fan       | 클리핑          | 0.6157 > 0.01                                       |
+| data/demo/pump/train/section_00_source_train_normal_0005_demo.wav | pump      | 끊김/정지 구간     | 300ms > 100.0ms                                     |
+| data/demo/valve/test/section_00_target_test_normal_0002_demo.wav  | valve     | 내용이 같은 중복 파일 | section_00_target_test_normal_0001_demo.wav 와 내용 동일 |
 

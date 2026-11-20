@@ -4,6 +4,7 @@
 
   anthropic : Claude API (유료, ANTHROPIC_API_KEY 필요)
   openai    : OpenAI API (유료, OPENAI_API_KEY 필요)
+  gemini    : Google Gemini API (무료 등급 있음, GEMINI_API_KEY 필요, https://aistudio.google.com 에서 발급)
   ollama    : 내 PC에서 돌리는 무료 LLM (https://ollama.com 설치, 데이터가 밖으로 나가지 않음)
   manual    : 수동. 질문(prompt)을 파일로 저장 -> 사람이 Claude 채팅 등에 붙여넣기
               -> 답을 파일로 저장 -> 다시 실행하면 그 답을 읽음 (무료, 설치 불필요)
@@ -22,8 +23,11 @@ from pathlib import Path
 DEFAULT_MODEL = {
     "anthropic": "claude-sonnet-5-5",
     "openai": "gpt-4o-mini",
+    "gemini": "gemini-2.5-flash",
     "ollama": "qwen2.5:7b",
 }
+GEMINI_URL = os.environ.get("GEMINI_BASE_URL",
+                            "https://generativelanguage.googleapis.com/v1beta").rstrip("/")
 OLLAMA_URL = os.environ.get("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
 MANUAL_DIR = Path(os.environ.get("PDQ_MANUAL_DIR", "llm_io"))
 
@@ -48,6 +52,8 @@ def pick_provider(requested: str | None = None) -> str | None:
         return "anthropic"
     if os.environ.get("OPENAI_API_KEY"):
         return "openai"
+    if os.environ.get("GEMINI_API_KEY"):
+        return "gemini"
     if _ollama_alive():
         return "ollama"
     return None
@@ -75,6 +81,23 @@ def _openai(system: str, user: str, max_tokens: int) -> str:
         model=model_name("openai"), temperature=0, max_tokens=max_tokens,
         messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])
     return r.choices[0].message.content
+
+
+def _gemini(system: str, user: str, json_mode: bool) -> str:
+    """Google Gemini REST API. 추가 설치 없이 표준 라이브러리로 호출한다."""
+    key = os.environ["GEMINI_API_KEY"]
+    body = {"system_instruction": {"parts": [{"text": system}]},
+            "contents": [{"role": "user", "parts": [{"text": user}]}],
+            "generationConfig": {"temperature": 0}}
+    if json_mode:
+        body["generationConfig"]["responseMimeType"] = "application/json"
+    url = f"{GEMINI_URL}/models/{model_name('gemini')}:generateContent"
+    req = urllib.request.Request(url, data=json.dumps(body).encode("utf-8"),
+                                 headers={"Content-Type": "application/json", "x-goog-api-key": key})
+    with urllib.request.urlopen(req, timeout=300) as r:
+        data = json.loads(r.read().decode("utf-8"))
+    parts = data["candidates"][0]["content"].get("parts", [])
+    return "".join(p.get("text", "") for p in parts)
 
 
 def _ollama(system: str, user: str, max_tokens: int, json_mode: bool) -> str:
@@ -114,6 +137,8 @@ def ask(system: str, user: str, *, provider: str, tag: str = "task",
         return _anthropic(system, user, max_tokens)
     if provider == "openai":
         return _openai(system, user, max_tokens)
+    if provider == "gemini":
+        return _gemini(system, user, json_mode)
     if provider == "ollama":
         return _ollama(system, user, max_tokens, json_mode)
     if provider == "manual":

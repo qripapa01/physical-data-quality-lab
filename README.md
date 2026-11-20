@@ -105,7 +105,10 @@ python scripts/05_llm_report.py --results results_dcase
 |---|---|---|---|
 | `manual` | 무료 | 없음 | 질문 파일(`llm_io/*_prompt.txt`)을 Claude 채팅 등에 붙여넣고, 답을 `*_response.txt` 로 저장 후 재실행 |
 | `ollama` | 무료 | [Ollama](https://ollama.com) 설치 + `ollama pull qwen2.5:7b` | **내 PC 안에서 실행 → 데이터가 외부로 나가지 않음** (시험기관 보안에 적합) |
-| `anthropic` / `openai` | 유료 | API 키 환경변수 | 가장 정확, 대량 처리 |
+| `gemini` | 무료 등급 있음 | [Google AI Studio](https://aistudio.google.com)에서 키 발급 → `set GEMINI_API_KEY=키` | API 연습용. 무료 등급 입력은 서비스 개선에 쓰일 수 있어 기업 데이터에는 부적합 |
+| `anthropic` / `openai` | 유료 | API 키 환경변수 | 대량 처리, 유료 등급 데이터 정책 |
+
+API 첫걸음: `python scripts/llm_hello.py --provider gemini` (질문 하나 보내고 답 받기)
 
 ```bash
 python scripts/06_llm_metadata.py --provider manual
